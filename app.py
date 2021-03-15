@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, Response
 
 import re
-import nltk
+import math
 import pickle
 from nltk.stem.porter import PorterStemmer
 
@@ -51,12 +51,20 @@ def clean(post):
 
     return post
 
+def percent(pt):
+    se = int(round(pt[1] * 100))
+    if se == 50:
+        if pt[1]>pt[0]:
+            se+=1
+        else:
+            se-=1
+    l = [str(se)+"%", str(100-se)+"%"]
+    return l
+
 
 def predict_data(data):
-    # map1 = {0: "I", 1: "E"}
-    # map2 = {0: "N", 1: "S"}
-    # map3 = {0: "T", 1: "F"}
-    # map4 = {0: "J", 1: "P"}
+
+    ret = []
 
     map1 = ["I", "E"]
     map2 = ["N", "S"]
@@ -81,11 +89,21 @@ def predict_data(data):
     JPB = pickle.load(open(jpfile, 'rb'))
 
     a = map1[IEB.predict(post)[0]]
-    b = map2[NSB.predict(post)[0]]
-    c = map3[TFB.predict(post)[0]]
-    d = map4[JPB.predict(post)[0]]
+    ret = percent(IEB.predict_proba(post)[0])
 
-    ret = a + b + c + d
+    b = map2[NSB.predict(post)[0]]
+    ret += percent(NSB.predict_proba(post)[0])
+
+    c = map3[TFB.predict(post)[0]]
+    ret += percent(TFB.predict_proba(post)[0])
+
+    d = map4[JPB.predict(post)[0]]
+    print("JPB prob : ", end="")
+    # print(JPB.predict_proba(post))
+    ret += percent(JPB.predict_proba(post)[0])
+
+    rett = a + b + c + d
+    ret+=["Prediction : "+rett]
 
     return ret
 
@@ -99,10 +117,9 @@ def employee():
         ret = False
         ret = predict_data(data)
         if ret:
-            return render_template('message.html', name=ret)
+            return render_template('res.html', name=ret)
         else:
-            # return "Wrong Credentials"
-            return render_template('message.html', name="Wrong Credentials")
+            return "Something went wrong !!"
 
 
 if __name__ == '__main__':

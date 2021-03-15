@@ -1,0 +1,97 @@
+.container{
+    background: linear-gradient(to right, #f4524d 0%, #5543ca 100%);
+    width: 100vw;
+    height: 100vh;
+    margin:0px;
+    display: block;
+    font-family: 'PT Sans','sans-serif';
+    overflow: hidden;
+}
+.info{
+    height:30%;
+    padding-top:7px;
+}
+h1{
+    font-weight: bold;
+    font-size: 80px;
+     background:linear-gradient(to right, #fa709a 0%, #fa709a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-family: 'Trocchi';
+     text-shadow:11px 11px transparent, 
+                3px 3px transparent, 
+                4px 4px black, 
+                5px 5px black, 
+                6px 6px black, 
+                7px 7px black;
+}
+
+.cards{
+    display: flex;
+    height:70%;
+    padding-left:10%;
+    padding-right:10%;
+}
+.box{
+    height: 350px;
+    width:20%;
+    margin-right:5%;
+    box-shadow: 3px 15px 25px 3px black;
+}
+.content{
+    height:100%;
+    width:100%;
+    overflow: hidden;
+}
+.content > div{
+    height:100%;
+    width:100%;
+}
+img{
+    height:100%;
+    width:100%;
+}
+.content > div > div {
+    height:100%;
+    width:100%;
+    text-align: center;
+    display: block;
+}
+.content > div:hover{
+    margin-top:-354px;
+}
+.part{
+    width:100%;
+    height:50%;
+    display: flex;
+}
+.part > div{
+    width:50%;
+    justify-content: center;
+    text-align: center;
+}
+.part h3{
+    font-size: 40px;
+    font-weight: bold;
+    padding-top: 25px;
+    color: black;
+}
+.part p{
+    font-size: 80px;
+    font-weight: bold;
+    margin:0px;
+    padding-top:40px;
+    color: rgb(150,250,226);
+    background:linear-gradient(to right, #fa709a 0%, #fa709a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-family: 'Trocchi';
+     text-shadow:11px 11px transparent, 
+                3px 3px transparent, 
+                4px 4px black, 
+                5px 5px black, 
+                6px 6px black, 
+                7px 7px black;
+}
